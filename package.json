@@ -4,5 +4,8 @@
   "description": "GraphQL Lightning Talk",
   "repository": "https://github.com/aaronpanch/graphql-slides.git",
   "author": "Aaron Panchal <aaron.panchal@gmail.com>",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "mdx-deck": "^3.0.13"
+  }
 }
