@@ -1,0 +1,8 @@
+{
+  "name": "graphql-slides",
+  "version": "1.0.0",
+  "description": "GraphQL Lightning Talk",
+  "repository": "https://github.com/aaronpanch/graphql-slides.git",
+  "author": "Aaron Panchal <aaron.panchal@gmail.com>",
+  "private": true
+}
