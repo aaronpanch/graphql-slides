@@ -1,5 +1,6 @@
 import { Head, Appear, Image, Split } from "mdx-deck";
 import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+import "prismjs/components/prism-ruby";
 import { github } from "@code-surfer/themes";
 import Layout from "./Layout";
 import myTheme from "./theme";
@@ -79,15 +80,7 @@ GraphQL is a query language for APIs and a runtime for fulfilling those queries 
 
 <Layout>
 
-### **1.** _Start_ with how your data will be used.
-
-</Layout>
-
----
-
-<Layout>
-
-## For Example
+## An Example
 
 Imagine we were building a theatre production API. It will tell us what shows we can see in our area.
 
@@ -95,11 +88,23 @@ Imagine we were building a theatre production API. It will tell us what shows we
 
 ---
 
-Our initial inclination might be to think about
+<Layout>
+
+### **1.** Start by asking how your data **will be used**.
+
+</Layout>
 
 ---
 
-<CodeSurfer>
+<Layout>
+
+Our initial inclination might be to think about...
+
+</Layout>
+
+---
+
+<CodeSurfer theme={myTheme}>
 
 ```graphql
 type Play {
@@ -118,7 +123,7 @@ type Play {
 
 type Production {
   play: Play!
-  venue: Venue!
+  venue: Theatre!
 }
 ```
 
@@ -131,37 +136,39 @@ type Play {
 
 type Production {
   play: Play!
-  venue: Venue!
+  venue: Theatre!
 }
 
-type Venue {
+type Theatre {
   address: String!
 }
 ```
 
 ```graphql
 query {
-  nearbyVenues(location: [Number!, Number!]) {
-    shows {
-      title
-      genre
+  nearbyShows(around: [Number!, Number!]!) {
+    title
+    directors
+    theatre {
+      address
     }
   }
 }
 ```
 
-```diff 2[2:14]
+```diff 2[2:13]
 
 ```
 
 ```graphql
 query {
-  nearbyVenues(location: [Number!, Number!]) {
-    shows {
-      title
-      genre
+  nearbyShows(around: [Number!, Number!]!, after: String) {
+    title
+    directors
+    theatre {
+      address
     }
-    hasMore
+    cursor
   }
 }
 ```
@@ -172,7 +179,7 @@ query {
 
 <Layout>
 
-### **2:** Take time to _describe_ your data before implementing.
+### **2:** Take time to **describe** your data **before** implementing.
 
 </Layout>
 
@@ -181,28 +188,37 @@ query {
 <CodeSurfer>
 
 ```graphql
-type Venue {
+type Production {
 }
 ```
 
 ```graphql
-type Venue {
-  address: String!
+type Production {
+  name: String!
 }
 ```
 
 ```graphql
-type Venue {
-  address: String!
-  shows: [Production]!
+type Production {
+  name: String!
+  play: String!
 }
 ```
 
 ```graphql
-type Venue {
-  address: String!
-  shows: [Production]!
-  hasMore: Boolean!
+type Production {
+  name: String!
+  play: String!
+  directors: [String!]
+}
+```
+
+```graphql
+type Production {
+  name: String!
+  play: String!
+  directors: [String!]
+  theatre: Theatre!
 }
 ```
 
@@ -214,12 +230,100 @@ type Venue {
 
 What haven't we talked about?
 
-<Appear>
-
-- SQL
-- Efficiency
-- Transport layer (HTTP)
-
-</Appear>
+<ul>
+  <Appear>
+    <li>SQL</li>
+    <li>Rails Models</li>
+    <li>Transport Layer</li>
+    <li>Implementation</li>
+  </Appear>
+</ul>
 
 </Layout>
+
+---
+
+<Layout>
+
+### **3:** You don't need to expose **everything**.
+
+</Layout>
+
+---
+
+<CodeSurferColumns>
+
+<Step>
+
+```ruby
+class Production < ApplicationModel
+  fields do
+    name :string
+  end
+
+  belongs_to :theatre
+  has_many   :directors
+  has_many   :actors
+  belongs_to :play
+end
+```
+
+```graphql
+type Production {
+  name: String!
+  play: Play!
+  directors: [Person!]
+  theatre: Theatre!
+}
+
+type Play {
+  title: String!
+  author: String!
+}
+
+type Person {
+  name: String!
+}
+
+type Theatre {
+  ...
+}
+```
+
+</Step>
+
+<Step>
+
+```ruby
+class Production < ApplicationModel
+  fields do
+    name :string
+  end
+
+  belongs_to :theatre
+  has_many   :directors
+  has_many   :actors
+  belongs_to :play
+end
+```
+
+```graphql
+type Production {
+  name: String!
+  play: String!
+  directors: [String!]
+  theatre: Theatre!
+}
+
+type Theatre {
+  ...
+}
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+---
+
+## Questions?

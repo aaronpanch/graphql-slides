@@ -50,6 +50,37 @@ export default {
       justifyContent: "space-around",
       padding: "2em",
       textAlign: "left"
+    },
+    CodeSurfer: {
+      pre: {
+        color: "text",
+        backgroundColor: "background"
+      },
+      code: {
+        color: "text",
+        backgroundColor: "background",
+        fontFamily: "monospace"
+      },
+      tokens: {
+        "comment cdata doctype": {
+          fontStyle: "italic"
+        },
+        "builtin changed keyword punctuation operator tag deleted string attr-value char number inserted": {
+          color: "primary"
+        }
+      },
+      title: {
+        backgroundColor: "background",
+        color: "text"
+      },
+      subtitle: {
+        color: "#d6deeb",
+        backgroundColor: "rgba(10,10,10,0.9)"
+      },
+      unfocused: {
+        // only the opacity of unfocused code can be changed
+        opacity: 0.2
+      }
     }
   }
 };
