@@ -1,4 +1,4 @@
-import { Head } from "mdx-deck";
+import { Head, Appear, Image, Split } from "mdx-deck";
 import Layout from "./Layout";
 import myTheme from "./theme";
 export const theme = myTheme;
@@ -7,11 +7,11 @@ export const theme = myTheme;
   <link rel="stylesheet" href="https://use.typekit.net/gif7rwq.css" />
 </Head>
 
-<Layout>
+<Layout style={{ marginLeft: "64px" }}>
 
 # To graph or, not... to graph
 
-A Talk in 2 Acts about <code style={{ color: '#f0647d'}}>GraphQL</code>.
+A Talk in 2 Acts about <code style={{ color: "rgb(208,46,149)"}}>GraphQL</code> <img src="http://graphql.org/img/logo.svg" alt="GraphQL Logo" width="50" style={{ display: "inline-block", verticalAlign: "sub" }}/>
 
 <small>By Emerson Price and Aaron Panchal</small>
 
@@ -19,8 +19,58 @@ A Talk in 2 Acts about <code style={{ color: '#f0647d'}}>GraphQL</code>.
 
 ---
 
-```jsx
-import React from "react";
+## Some Tips
 
-export default props => <h1>Highlighting</h1>;
-```
+---
+
+<Image src="https://media.giphy.com/media/Is1O1TWV0LEJi/giphy.gif" />
+
+---
+
+<Layout>
+
+### **1.** _Start_ with how your data will be used.
+
+</Layout>
+
+---
+
+<Layout>
+
+## For Example
+
+Imagine we were building a theatre production API.
+
+</Layout>
+
+---
+
+<Layout>
+
+Before talking about potential models and their relationships:
+
+- plays
+- productions
+- venues
+
+</Layout>
+
+---
+
+<Layout>
+
+Ask:
+
+- What's going to be on the `DashboardPage`?
+- Is there infinite scrolling?
+- What can I load asynchronously?
+
+</Layout>
+
+---
+
+<Layout>
+
+### **2:** Take time to _describe_ your data.
+
+</Layout>

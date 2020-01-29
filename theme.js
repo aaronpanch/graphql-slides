@@ -1,3 +1,12 @@
+const headerHighlight = {
+  backgroundSize: "100% 1.2em",
+  wordBreak: "keep-all",
+  paddingRight: "1em",
+  marginRight: "-0.5em",
+  backgroundPosition: "0.5em 0px",
+  backgroundRepeat: "no-repeat space"
+};
+
 export default {
   fonts: {
     body: "ff-tisa-web-pro, serif",
@@ -5,14 +14,14 @@ export default {
     monospace: '"Fira Code", monospace'
   },
   fontWeights: {
-    body: 100,
-    heading: 100,
-    bold: 300
+    body: 300,
+    heading: 300,
+    bold: 400
   },
   colors: {
     text: "#333",
     background: "#fff",
-    primary: "blue"
+    primary: "rgb(208,46,149)"
   },
   styles: {
     root: {
@@ -23,11 +32,18 @@ export default {
       fontSize: ["1em", "1.5em", null, "4em"]
     },
     h1: {
-      fontStyle: "italic"
+      fontStyle: "italic",
+      backgroundImage:
+        "linear-gradient(transparent 55%,#FED1D1 55%,#FED1D1 95%,transparent 95%)",
+      ...headerHighlight
     },
-    small: {
-      fontWeight: 300,
-      color: "colors.primary"
+    h2: {
+      backgroundImage:
+        "linear-gradient(transparent 55%,#FECB29 55%,#FECB29 95%,transparent 95%)",
+      ...headerHighlight
+    },
+    strong: {
+      color: "primary"
     },
     Slide: {
       display: "flex",

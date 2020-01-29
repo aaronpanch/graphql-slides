@@ -1,14 +1,14 @@
 import React from "react";
 
-export default ({ children }) => (
+export default ({ children, style }) => (
   <div
     style={{
-      minWidth: "60%",
-      minHeight: "60%",
+      width: "60vw",
       display: "flex",
       flexDirection: "column",
       alignItems: "flex-start",
-      marginLeft: "64px"
+      justifyContent: "space-between",
+      ...style
     }}
   >
     {children}
