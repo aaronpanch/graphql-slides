@@ -8,6 +8,7 @@ const headerHighlight = {
 };
 
 export default {
+  googleFont: "https://fonts.googleapis.com/css?family=Fira+Code&display=swap",
   fonts: {
     body: "ff-tisa-web-pro, serif",
     heading: "ff-tisa-web-pro, serif",
