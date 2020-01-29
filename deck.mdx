@@ -1,4 +1,6 @@
 import { Head, Appear, Image, Split } from "mdx-deck";
+import { CodeSurfer, CodeSurferColumns, Step } from "code-surfer";
+import { github } from "@code-surfer/themes";
 import Layout from "./Layout";
 import myTheme from "./theme";
 export const theme = myTheme;
@@ -39,38 +41,137 @@ A Talk in 2 Acts about <code style={{ color: "rgb(208,46,149)"}}>GraphQL</code> 
 
 ## For Example
 
-Imagine we were building a theatre production API.
+Imagine we were building a theatre production API. It will tell us what shows we can see in our area.
 
 </Layout>
 
 ---
 
-<Layout>
+Our initial inclination might be to think about
 
-Before talking about potential models and their relationships:
+---
 
-- plays
-- productions
-- venues
+<CodeSurfer>
 
-</Layout>
+```graphql
+type Play {
+  title: String!
+  author: String!
+  genre: [String]!
+}
+```
+
+```graphql
+type Play {
+  title: String!
+  author: String!
+  genre: [String]!
+}
+
+type Production {
+  play: Play!
+  venue: Venue!
+}
+```
+
+```graphql
+type Play {
+  title: String!
+  author: String!
+  genre: [String]!
+}
+
+type Production {
+  play: Play!
+  venue: Venue!
+}
+
+type Venue {
+  address: String!
+}
+```
+
+```graphql
+query {
+  nearbyVenues(location: [Number!, Number!]) {
+    shows {
+      title
+      genre
+    }
+  }
+}
+```
+
+```diff 2[2:14]
+
+```
+
+```graphql
+query {
+  nearbyVenues(location: [Number!, Number!]) {
+    shows {
+      title
+      genre
+    }
+    hasMore
+  }
+}
+```
+
+</CodeSurfer>
 
 ---
 
 <Layout>
 
-Ask:
-
-- What's going to be on the `DashboardPage`?
-- Is there infinite scrolling?
-- What can I load asynchronously?
+### **2:** Take time to _describe_ your data before implementing.
 
 </Layout>
 
 ---
 
+<CodeSurfer>
+
+```graphql
+type Venue {
+}
+```
+
+```graphql
+type Venue {
+  address: String!
+}
+```
+
+```graphql
+type Venue {
+  address: String!
+  shows: [Production]!
+}
+```
+
+```graphql
+type Venue {
+  address: String!
+  shows: [Production]!
+  hasMore: Boolean!
+}
+```
+
+</CodeSurfer>
+
+---
+
 <Layout>
 
-### **2:** Take time to _describe_ your data.
+What haven't we talked about?
+
+<Appear>
+
+- SQL
+- Efficiency
+- Transport layer (HTTP)
+
+</Appear>
 
 </Layout>
