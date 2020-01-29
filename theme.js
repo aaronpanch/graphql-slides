@@ -21,7 +21,8 @@ export default {
   colors: {
     text: "#333",
     background: "#fff",
-    primary: "rgb(208,46,149)"
+    primary: "rgb(208,46,149)",
+    accent: "#3D50C5"
   },
   styles: {
     root: {
@@ -67,6 +68,9 @@ export default {
         },
         "builtin changed keyword punctuation operator tag deleted string attr-value char number inserted": {
           color: "primary"
+        },
+        plain: {
+          color: "accent"
         }
       },
       title: {
