@@ -6,7 +6,8 @@
   "author": "Aaron Panchal <aaron.panchal@gmail.com>",
   "private": true,
   "scripts": {
-    "start": "mdx-deck deck.mdx"
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx"
   },
   "devDependencies": {
     "mdx-deck": "^3.0.13"
